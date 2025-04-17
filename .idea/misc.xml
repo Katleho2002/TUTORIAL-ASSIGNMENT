@@ -8,6 +8,11 @@
         <option value="$PROJECT_DIR$/VEHICLE/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="openjdk-23 (2)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

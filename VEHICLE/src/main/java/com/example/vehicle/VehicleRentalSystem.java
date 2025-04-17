@@ -797,11 +797,27 @@ public class VehicleRentalSystem extends Application {
     }
 }
 
-// Database connector class for database operations
+/// Database connector class for database operations
 class DbConnector {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/vehicle_rental_system?useSSL=false";
     private static final String DB_USERNAME = "root"; // Update with your DB username
     private static final String DB_PASSWORD = "Katleho@0210"; // Update with your DB password
+
+    // Initializes the database and creates the necessary tables
+    public void initializeDatabase() {
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD)) {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS vehicle_rental_system");
+            stmt.executeUpdate("USE vehicle_rental_system");
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(50) NOT NULL UNIQUE, password VARCHAR(255) NOT NULL, role ENUM('Admin', 'Employee') NOT NULL)");
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS vehicles (vehicle_id INT AUTO_INCREMENT PRIMARY KEY, brand VARCHAR(50) NOT NULL, model VARCHAR(50) NOT NULL, category VARCHAR(50) NOT NULL, rental_price DECIMAL(10, 2) NOT NULL, availability_status ENUM('Available', 'Not Available') NOT NULL)");
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS customers (customer_id INT AUTO_INCREMENT PRIMARY KEY, customer_name VARCHAR(100) NOT NULL, contact_info VARCHAR(150) NOT NULL, license_number VARCHAR(50) NOT NULL UNIQUE)");
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS bookings (booking_id INT AUTO_INCREMENT PRIMARY KEY, vehicle_id INT NOT NULL, customer_id INT NOT NULL, start_date DATE NOT NULL, end_date DATE NOT NULL, booking_date DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id) ON DELETE CASCADE, FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE)");
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS payments (payment_id INT AUTO_INCREMENT PRIMARY KEY, booking_id INT NOT NULL, amount DECIMAL(10, 2) NOT NULL, payment_date DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (booking_id) REFERENCES bookings(booking_id) ON DELETE CASCADE)");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Connection connect() throws SQLException {
         return DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -809,8 +825,7 @@ class DbConnector {
 
     public boolean isUsernameAvailable(String username) {
         String query = "SELECT * FROM users WHERE username = ?";
-        try (Connection connection = connect();
-             PreparedStatement stmt = connection.prepareStatement(query)) {
+        try (Connection connection = connect(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             return !rs.next();
@@ -822,8 +837,7 @@ class DbConnector {
 
     public void registerUser(String username, String password, String role) {
         String query = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
-        try (Connection connection = connect();
-             PreparedStatement stmt = connection.prepareStatement(query)) {
+        try (Connection connection = connect(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, username);
             stmt.setString(2, password);
             stmt.setString(3, role);
@@ -835,8 +849,7 @@ class DbConnector {
 
     public boolean validateUser(String username, String password) {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
-        try (Connection connection = connect();
-             PreparedStatement stmt = connection.prepareStatement(query)) {
+        try (Connection connection = connect(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, username);
             stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
@@ -867,7 +880,6 @@ class DbConnector {
     public void updateVehicle(int vehicleId, String brandModel, double rentalPrice, boolean availability, String category) {
         try (Connection connection = connect()) {
             String[] parts = brandModel.split(" ", 2);
-            // Using 'vehicle_id' in the WHERE clause
             String query = "UPDATE vehicles SET brand = ?, model = ?, category = ?, rental_price = ?, availability_status = ? WHERE vehicle_id = ?";
             try (PreparedStatement stmt = connection.prepareStatement(query)) {
                 stmt.setString(1, parts[0]);

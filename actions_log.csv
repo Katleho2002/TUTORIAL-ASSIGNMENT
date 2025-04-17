@@ -10,3 +10,10 @@ Customer Added,KOPANO,kopano@gmail.com,ABD12345D
 Customer Added,THAPELO,thapelo@gmail.com,ASF123
 Customer Added,THAPELO,thapelo@gmail.com,ABW234
 Vehicle Booked,1,1,2025-04-03,2027-04-08
+Vehicle Added,BMW 3SERIES,5600.0,true,Truck
+Vehicle Added,HONDA FIT,1200.0,true,Bike
+Customer Added,BOKAMOSO,bokamoso@gmail.com,AGB564AG
+Customer Added,THABO,thabo@gmail.com,AKH2345
+Vehicle Booked,3,4,2023-06-27,2026-04-03
+Vehicle Booked,2,1,2025-03-31,2027-04-02
+Vehicle Added,VW POLO,100.0,true,Car
