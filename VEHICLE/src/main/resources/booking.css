@@ -1,0 +1,53 @@
+.root {
+    -fx-background-color: linear-gradient(to right top, #0f2027, #203a43, #2c5364);
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-padding: 20;
+}
+
+.label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 5 0;
+}
+
+.text-field, .date-picker {
+    -fx-pref-width: 280px;
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-border-color: #4facfe;
+    -fx-border-width: 1px;
+    -fx-padding: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);
+}
+
+.button {
+    -fx-pref-width: 280px;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: linear-gradient(to right, #43cea2, #185a9d);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.3, 0, 2);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to right, #185a9d, #43cea2);
+    -fx-translate-y: -2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 8, 0.4, 0, 3);
+}
+
+.list-view {
+    -fx-background-radius: 8px;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 1;
+    -fx-font-size: 13px;
+    -fx-pref-height: 150px;
+    -fx-padding: 5px;
+    -fx-background-color: #ffffff;
+}

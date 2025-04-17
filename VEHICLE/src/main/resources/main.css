@@ -1,0 +1,43 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #232526, #414345); /* Elegant dark gradient */
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-alignment: center;
+}
+
+.label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 0 0 20px 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.8), 4, 0.5, 0, 2);
+}
+
+.text-field, .password-field, .combo-box {
+    -fx-pref-width: 250px;
+    -fx-padding: 8px;
+    -fx-background-radius: 6px;
+    -fx-font-size: 14px;
+    -fx-border-color: #00bcd4;
+    -fx-border-width: 1;
+    -fx-border-radius: 6px;
+    -fx-background-color: #f9f9f9;
+}
+
+.button {
+    -fx-pref-width: 250px;
+    -fx-padding: 10px;
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-background-color: linear-gradient(to right, #43cea2, #185a9d); /* Teal to deep blue */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.4, 0, 3);
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to right, #185a9d, #43cea2); /* Reverse gradient */
+    -fx-translate-y: -2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0, 4);
+}

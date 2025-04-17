@@ -1,0 +1,31 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10 0 20 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 3, 0, 1, 2);
+}
+
+.button {
+    -fx-pref-width: 250px;
+    -fx-padding: 12px 20px;
+    -fx-font-size: 14px;
+    -fx-background-color: linear-gradient(to right, #1abc9c, #16a085);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 4, 0, 0, 3);
+    -fx-transition: all 0.3s ease;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to right, #16a085, #1abc9c);
+    -fx-translate-y: -2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0, 0, 4);
+}
